@@ -5,11 +5,15 @@ from railib import api
 from railib.credentials import ClientCredentials
 
 ctx = api.Context(
-    host=st.secrets["rai"]["host"],
-    credentials=ClientCredentials(
-      st.secrets["rai"]["client_id"],
-      st.secrets["rai"]["client_secret"],
-    )
+   region=st.secrets["rai"]["region"],
+   host=st.secrets["rai"]["host"],
+   port=st.secrets["rai"]["port"],
+   credentials=ClientCredentials(
+     st.secrets["rai"]["client_id"],
+     st.secrets["rai"]["client_secret"],
+     st.secrets["rai"]["client_credentials_url"]
+   ),
+   audience=st.secrets["rai"]["audience"]
 )
 
 def rai_query(query: str, readonly: bool = True):
